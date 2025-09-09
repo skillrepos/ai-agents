@@ -1,6 +1,6 @@
 # Understanding AI Agents
 ## Session labs 
-## Revision 4.0 - 08/22/25
+## Revision 4.1 - 09/09/25
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -21,14 +21,14 @@ cd agents
 code agent1.py
 ```
 
-3. As you can see, this outlines the steps the agent will go through without all the code. When you are done looking at it, close the file by clicking on the "X" in the tab at the top of the file.
+3. If you scroll through this file, you can see it outlines the steps the agent will go through without all the code. When you are done looking at it, close the file by clicking on the "X" in the tab at the top of the file.
 
 4. Now, let's fill in the code. To keep things simple and avoid formatting/typing frustration, we already have the code in another file that we can merge into this one. Run the command below in the terminal.
 ```
 code -d ../extra/lab1-code.txt agent1.py
 ```
 
-5. Once you have run the command, you'll have a side-by-side in your editor of the completed code and the agent1.py file.
+5. Once you have run the command, you'll have a side-by-side view in your editor of the completed code and the agent1.py file.
   You can merge each section of code into the agent1.py file by hovering over the middle bar and clicking on the arrows pointing right. Go through each section, look at the code, and then click to merge the changes in, one at a time.
 
 ![Side-by-side merge](./images/aa40.png?raw=true "Side-by-side merge") 
@@ -43,7 +43,7 @@ code -d ../extra/lab1-code.txt agent1.py
 python agent1.py
 ```
 
-8. The agent will start running and will prompt for a location (or "exit" to finish). At the prompt, you can type in a location like "Paris, France" or "London" or "Raleigh" and hit *Enter*. After that you'll be able to see the Thought -> Action -> Observation loop in practice as each one is listed out. (NOTE: This will take multiple minutes to respond initially.)  You'll also see the arguments being passed to the tools as they are called. Finally you should see a human-friendly message from the AI summarizing the weather forecast.
+8. The agent will start running and will prompt for a location (or "exit" to finish). At the prompt, you can type in a location like "Paris, France" or "London" or "Raleigh" and hit *Enter*. After that you'll be able to see the Thought -> Action -> Observation loop in practice as each one is listed out. You'll also see the arguments being passed to the tools as they are called. Finally you should see a human-friendly message from the AI summarizing the weather forecast.  (**NOTE: Since this is having to load up the model initially, it will take up to 3 minutes to return the first response.**)
 
 ![Agent run](./images/aa42.png?raw=true "Agent run") 
 
@@ -268,7 +268,15 @@ python agent5.py
 
 ![Execution](./images/aa31.png?raw=true "Execution") 
 
-5. Now, that we know how the code works and that it works, let's consider the overall approach. Since there are multiple functions going on here (getting info, finding flights, booking flights) it doesn't necessarily make sense to have just one agent doing all those things. Let's add two other agents - a *travel agent* to help with finding flights, and a customer_service_agent to help with user interactions. To start, replace the single *booking agent* definition with these definitions for the 3 agents (making sure to get the indenting correct):
+5. Now, that we know how the code works and that it works, let's consider the overall approach. Since there are multiple functions going on here (getting info, finding flights, booking flights) it doesn't necessarily make sense to have just one agent doing all those things. Let's add two other agents - a *travel agent* to help with finding flights, and a customer_service_agent to help with user interactions. To start, open the code for editing.
+
+```
+code agent5.py
+```
+
+
+6. Now, replace the single *booking agent* definition with these definitions for the 3 agents (making sure to get the indenting correct):
+
 
 **Directions:** Copy the block of replacement text in gray below and paste over the single agent definition in the code. Reminder - you may need to use keyboard shortcuts to copy and paste. The screenshots are only to show you before and after - they are not what you copy.
 
@@ -305,7 +313,7 @@ customer_service_agent = Agent(
 
 ![Replaced text](./images/aa27.png?raw=true "Replaced text")
 
-6. Next, we'll change each *task definition* to reflect which agent should own it. The places to make the change are in the task definitions in the lines that start with "*agent=*". Just edit each one as needed per the mapping in the table below.
+7. Next, we'll change each *task definition* to reflect which agent should own it. The places to make the change are in the task definitions in the lines that start with "*agent=*". Just edit each one as needed per the mapping in the table below. The screenshot below the mappings shows what the changed code should look like.
 
 | **Task** | *Agent* | 
 | :--------- | :-------- | 
@@ -316,7 +324,7 @@ customer_service_agent = Agent(
          
 ![Replaced text](./images/aa28.png?raw=true "Replaced text")
 
-7. Finally, we need to add the new agents to our crew. Edit the "*agents=[*" line in the block under the comment "*# Create the crew*". In that line, add *customer_service_agent* and *travel_agent*. The full line is below. The screenshot shows the changes made.
+8. Finally, we need to add the new agents to our crew. Edit the "*agents=[*" line in the block under the comment "*# Create the crew*". In that line, add *customer_service_agent* and *travel_agent*. The full line is below. The screenshot shows the changes made.
 
 ```
 agents=[booking_agent, customer_service_agent, travel_agent],
@@ -324,13 +332,13 @@ agents=[booking_agent, customer_service_agent, travel_agent],
 
 ![Replaced text](./images/aa29.png?raw=true "Replaced text")
 
-8. Now you can save your changes and then run the program again.
+9. Now you can save your changes and then run the program again.
 
 ```
 python agent5.py
 ```
 
-9. This time when the code runs, you should see the different agents being used in the processing.
+10. This time when the code runs, you should see the different agents being used in the processing.
 
 ![Run with new agents](./images/aa30.png?raw=true "Run with new agents")
 
