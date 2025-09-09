@@ -4,9 +4,13 @@ Repository for AI Agents hands-on workshop
 
 These instructions will guide you through configuring a GitHub Codespaces environment that you can use to run the course labs. 
 
+<br><br>
+
 **1. Click on the button below to start a new codespace from this repository.**
 
 Click here ➡️  [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/skillrepos/ai-agents?quickstart=1)
+
+<br><br>
 
 **2. Then click on the option to create a new codespace.**
 
@@ -23,13 +27,29 @@ The codespace is ready to use when you see a prompt like the one shown below in 
 ![Ready to use](./images/aa2.png?raw=true "Ready to use")
 
 
+<br><br>
+
 **3. Open up the *labs.md* file so you can follow along with the labs.**
 You can either open it in a separate browser instance or open it in the codespace. If you open it in the codespace, make sure to *Open Preview* so you can see it in Markdown form as intended.
 ![Opening labs](./images/aa3.png?raw=true "Opening labs")
 
 **Now, you are ready for the labs!**
 
-**4. (Optional, but recommended) Change your codespace's default timeout from 30 minutes to longer (60 for half-day sessions, 90 for deep dive sessions).**
+<br><br>
+
+**4. (Optional, but recommended) Run the script below to "warm up" access for the local model to reduce response times for some of the labs.**
+In the codespace *TERMINAL*, run the command below.
+
+```
+scripts/warmup.sh
+```
+
+![LLM warmup](./images/aa77.png?raw=true "LLM warmup")
+
+<br><br>
+
+
+**5. (Optional, but recommended) Change your codespace's default timeout from 30 minutes to longer (60 for half-day sessions, 90 for deep dive sessions).**
 To do this, when logged in to GitHub, go to https://github.com/settings/codespaces and scroll down on that page until you see the *Default idle timeout* section. Adjust the value as desired.
 
 ![Changing codespace idle timeout value](./images/aa4.png?raw=true "Changing codespace idle timeout value")
