@@ -23,8 +23,8 @@ After installing Ollama, ensure the `ollama` command is available on your PATH.
 ## 2) Clone the repository
 
 ```bash
-git clone https://github.com/skillrepos/ai-aip.git
-cd ai-aip
+git clone https://github.com/skillrepos/ai-agents.git
+cd ai-agents
 ```
 
 ---
@@ -183,8 +183,8 @@ ollama rm llama3.2:latest
 
 ```bash
 # Clone
-git clone https://github.com/skillrepos/ai-aip.git
-cd ai-aip
+git clone https://github.com/skillrepos/ai-agents.git
+cd ai-agents
 
 # Python venv
 python3 -m venv .venv && source .venv/bin/activate  # macOS/Linux
