@@ -125,7 +125,7 @@ As you look at the differences, note that we are using FastMCP to more easily se
 python mcp_server_v2.py
 ```
 
-![MCP server start](./images/aip20.png?raw=true "MCP server start") 
+![MCP server start](./images/uaa8.png?raw=true "MCP server start") 
 
 <br><br>
 
@@ -142,7 +142,7 @@ code ../scripts/discover_tools.py
 python ../scripts/discover_tools.py
 ```
 
-![Discovering tools](./images/aip33.png?raw=true "Discovering tools") 
+![Discovering tools](./images/uaa9.png?raw=true "Discovering tools") 
 
 <br><br>
 
@@ -174,7 +174,7 @@ python mcp_agent_v2.py
 What is the weather in New York?
 ```
 
-![Agent using MCP client running](./images/aip24.png?raw=true "Agent using MCP client running") 
+![Agent using MCP client running](./images/uaa10.png?raw=true "Agent using MCP client running") 
 
 <br><br>
 
