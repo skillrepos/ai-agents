@@ -42,6 +42,8 @@ code agent1.py
 
 3. If you scroll through this file, you can see it outlines the steps the agent will go through without all the code. When you are done looking at it, close the file by clicking on the "X" in the tab at the top of the file.
 
+![Agent code preview](./images/uaa3.png?raw=true "Agent code preview") 
+
 <br><br>
 
 4. Now, let's fill in the code. To keep things simple and avoid formatting/typing frustration, we already have the code in another file that we can merge into this one. Run the command below in the terminal.
@@ -54,13 +56,13 @@ code -d ../extra/lab1-code.txt agent1.py
 5. Once you have run the command, you'll have a side-by-side view in your editor of the completed code and the agent1.py file.
   You can merge each section of code into the agent1.py file by hovering over the middle bar and clicking on the arrows pointing right. Go through each section, look at the code, and then click to merge the changes in, one at a time.
 
-![Side-by-side merge](./images/aip17.png?raw=true "Side-by-side merge") 
+![Side-by-side merge](./images/uaa4.png?raw=true "Side-by-side merge") 
 
 <br><br>
 
 6. When you have finished merging all the sections in, the files should show no differences. Save the changes simply by clicking on the "X" in the tab name.
 
-![Merge complete](./images/aa41.png?raw=true "Merge complete") 
+![Merge complete](./images/uaa5.png?raw=true "Merge complete") 
 
 <br><br>
 
