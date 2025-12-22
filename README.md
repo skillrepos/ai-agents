@@ -43,7 +43,7 @@ The codespace is ready to use when you see a prompt like the one shown below in 
 python scripts/warmup.py --embed --keep-alive 300m --auto-pull
 ```
 
-![Run warmup script](./images/aip22.png?raw=true "Run warmup script")
+![Run warmup script](./images/uaa6.png?raw=true "Run warmup script")
 
 <br><br>
 
