@@ -23,7 +23,7 @@ Click here ➡️  [![Open in GitHub Codespaces](https://github.com/codespaces/b
 
 **3. Then click on the option to create a new codespace.**
 
-![Creating new codespace from button](./images/aa74.png?raw=true "Creating new codespace from button")
+![Creating new codespace from button](./images/uaa1.png?raw=true "Creating new codespace from button")
 
 This will run for a long time (10 or more minutes) while it gets everything ready.
 
