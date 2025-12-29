@@ -1,6 +1,6 @@
   # Local Setup Guide for Windows
 
-This guide will help you run the AI-AIP workshop devcontainer locally on your Windows machine instead of using GitHub Codespaces.
+This guide will help you run the AI Agents workshop devcontainer locally on your Windows machine instead of using GitHub Codespaces.
 
 ## Prerequisites
 
@@ -64,15 +64,15 @@ wsl --list --verbose
 ### 1. Clone the Repository
 Open PowerShell or Windows Terminal and run:
 ```powershell
-git clone https://github.com/skillrepos/ai-aip.git
-cd ai-aip
+git clone https://github.com/skillrepos/ai-agents.git
+cd ai-agents
 ```
 
 Alternatively, clone directly in WSL:
 ```bash
 wsl
-git clone https://github.com/skillrepos/ai-aip.git
-cd ai-aip
+git clone https://github.com/skillrepos/ai-agents.git
+cd ai-agents
 ```
 
 ### 2. Open in VS Code
@@ -175,7 +175,7 @@ If you see port conflict errors:
 
 ### File Permission Issues
 If you encounter permission errors, ensure your repository is cloned in a location accessible to WSL:
-- Recommended: Clone inside WSL (e.g., `/home/username/ai-aip`)
+- Recommended: Clone inside WSL (e.g., `/home/username/ai-agents`)
 - Avoid: Windows filesystem paths like `C:\Users\...`
 
 ## Performance Tips
