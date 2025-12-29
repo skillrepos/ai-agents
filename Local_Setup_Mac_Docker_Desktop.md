@@ -1,6 +1,6 @@
 # Local Setup Guide for Mac
 
-This guide will help you run the AI-AIP workshop devcontainer locally on your Mac instead of using GitHub Codespaces.
+This guide will help you run the AI Agents workshop devcontainer locally on your Mac instead of using GitHub Codespaces.
 
 ## Prerequisites
 
@@ -38,8 +38,8 @@ This guide will help you run the AI-AIP workshop devcontainer locally on your Ma
 ### 1. Clone the Repository
 Open Terminal and run:
 ```bash
-git clone https://github.com/skillrepos/ai-aip.git
-cd ai-aip
+git clone https://github.com/skillrepos/ai-agents.git
+cd ai-agents
 ```
 
 ### 2. Open in VS Code
