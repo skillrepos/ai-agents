@@ -1,4 +1,4 @@
-# Understanding AI Agents
+# AI Agents - Lenovo
 
 Repository for AI Agents hands-on workshop
 
