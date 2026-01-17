@@ -10,7 +10,12 @@ This guide will help you run the AI Agents workshop devcontainer locally on your
 - 16GB RAM minimum
 - 32GB free disk space
 
-### Required Software
+### Required SoftwareI will be doing a training for developers from Japan and China on AI Agents using the attached labs.md file for the hands-on labs and the slide deck in the attached pptx file. Review these files for:
+
+1. Anything that could be offensive to their culture
+2. Anything that could be confusing to them based on American idioms or related issues
+
+For any issues that you identify, propose a suggested change/fix to make the content acceptable/clear.
 
 #### 1. Install Docker Desktop
 - Download from: https://www.docker.com/products/docker-desktop
@@ -100,7 +105,7 @@ If you see "Docker is not running" errors:
 ### Ollama Models Not Downloaded
 If models are missing:
 ```bash
-ollama pull llama3.2:3b
+ollama pull llama3.2:latest
 ollama pull nomic-embed-text
 ```
 
