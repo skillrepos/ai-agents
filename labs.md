@@ -1,6 +1,6 @@
-# Understanding AI Agents
+# AI Agents
 ## Session labs 
-## Revision 3.01 - 12/22/25
+## Revision 4.00 - Lenovo 01/17/26
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
