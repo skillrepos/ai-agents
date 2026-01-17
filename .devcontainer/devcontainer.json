@@ -36,6 +36,6 @@
             ]
         }
     },
-    "postCreateCommand": "bash -i scripts/pysetup.sh py_env && bash -i scripts/startOllama.sh && echo CODESPACE IS READY.",
+    "postCreateCommand": "bash -i scripts/pysetup.sh py_env && bash -i scripts/startOllama.sh",
     "postStartCommand" : "nohup bash -c 'ollama serve &'"
 }
