@@ -560,7 +560,7 @@ determine if a number is prime or not
 
 <br>
 
-![Simple task](./images/aip6.png?raw=true "Simple task")
+![Simple task](./images/aa78.png?raw=true "Simple task")
 
 <br><br>
 
