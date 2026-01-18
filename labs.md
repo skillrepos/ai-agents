@@ -669,7 +669,7 @@ python -m pytest test_agent_reasoning.py::test_ambiguous_query -v -s
 
 5. This test verifies the agent asks for clarification when query is unclear. All instant because LLM responses are mocked.
 
-![Passing test](./images/aip26.png?raw=true "Passing test")
+![Passing test](./images/aa80.png?raw=true "Passing test")
 
 <br><br>
 
