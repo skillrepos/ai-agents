@@ -1,6 +1,6 @@
 # AI Agents
 ## Session labs 
-## Revision 4.01 - Lenovo 01/17/26
+## Revision 4.04 - Lenovo 01/17/26
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -656,7 +656,7 @@ python -m pytest test_agent_reasoning.py::test_agent_selects_weather -v -s
 
 You should see output showing what each test validates. The `-s` flag shows print statements so you can see what's being tested.
 
-![Passing test](./images/aip25.png?raw=true "Passing test")
+![Passing test](./images/aa79.png?raw=true "Passing test")
 
 <br><br>
 
