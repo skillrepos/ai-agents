@@ -869,6 +869,10 @@ python secure_agent.py
    - Even if it somehow reached the LLM, **tool allowlist** prevents access to email_simulator
    - Agent **maintains its original goal**
 
+![Secure agent run](./images/aa86.png?raw=true "Secure agent run")
+
+<br><br>
+
 14. Compare the results:
    - **Vulnerable agent**: Goal can be changed by user input
    - **Secure agent**: Goal is protected by architectural controls (not just prompts)
