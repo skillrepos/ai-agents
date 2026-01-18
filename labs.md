@@ -822,7 +822,7 @@ python vulnerable_agent.py
    - This is **goal manipulation** - the agent's purpose was changed by user input
    - The agent followed the attacker's instructions instead of its original goal
 
-![Hijacked](./images/aa88.png?raw=true "Hijacked")
+![Hijacked](./images/aa85.png?raw=true "Hijacked")
 
 <br><br>
 
