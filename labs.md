@@ -681,7 +681,7 @@ python -m pytest test_agent_reasoning.py::test_tool_failure_recovery -v -s
 
 7. Watch the output - you'll see the tool return an error message (not crash), demonstrating that the agent can receive errors and explain them to users. This completes instantly with mocked responses.
 
-![Passing test](./images/aip27.png?raw=true "Passing test")
+![Passing test](./images/aa81.png?raw=true "Passing test")
 
 <br><br>
 
@@ -696,7 +696,7 @@ This will do the following: (running time: ~2-3 min):
 - Test that agent calls BOTH tools (calculator AND weather)
 - Verify agent reasoning chain
 
-![Passing test](./images/aip28.png?raw=true "Passing test")
+![Passing test](./images/aa82.png?raw=true "Passing test")
 
 <br><br>
 
@@ -711,7 +711,7 @@ Look at `test_real_agent_tool_selection()` - it checks:
 - Did agent sequence tool calls correctly?
 - Did agent synthesize results?
 
-10. After completion, review the key insight: We tested AGENT BEHAVIOR (reasoning, tool selection, error handling) not just code correctness. This is agentic testing.
+10. After completion, review the key insight: We tested agent behavior (reasoning, tool selection, error handling) not just code correctness. This is agentic testing.
 
 <br><br>
 
