@@ -639,7 +639,7 @@ code test_agent_reasoning.py
 
 <br><br>
 
-2. Notice the test structure:
+2. 2. Scroll down to the sections that start with "# ==== MOCK-BASED TESTS" (around line 143). Notice the test structures throughout the rest of the file:
    - Mock LLM returns (instant - no waiting)
    - Tests verify: "Did agent choose calculator for math?"
    - Tests verify: "Did agent choose weather for location query?"
