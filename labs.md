@@ -1,6 +1,6 @@
 # AI Agents
 ## Session labs 
-## Revision 4.04 - Lenovo 01/17/26
+## Revision 4.05 - Lenovo 01/20/26
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -706,7 +706,7 @@ This will do the following: (running time: ~2-3 min):
 code test_agent_reasoning.py
 ```
 
-Look at `test_real_agent_tool_selection()` - it checks:
+Look at `test_real_agent_tool_selection()` (around line 310) - it checks:
 - Did agent parse the compound query?
 - Did agent sequence tool calls correctly?
 - Did agent synthesize results?
