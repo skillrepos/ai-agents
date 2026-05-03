@@ -1,6 +1,6 @@
 # Understanding AI Agents
 ## Session labs 
-## Revision 3.01 - 12/22/25
+## Revision 4.0 - 05/03/25
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -80,7 +80,17 @@ python agent1.py
 
 <br><br>
 
-9. You can then input another location and run the agent again or exit. Note that the API may be limiting the number of accesses in a short period of time. So you may occasionally see it noting a retry. When done, just enter "exit".
+9. You can then input another location and run the agent again or exit. Note that the API may be limiting the number of accesses in a short period of time. So you may occasionally see it noting a retry.
+
+<br><br>
+
+10. Try putting in *Sydney, Australia* and then check the output against the weather forecast on the web. Why do you think it doesn't match? How would you fix it?
+
+Here's a clue: "If latitude/longitude is in the Southern or Western hemisphere, use negative values as appropriate"
+
+<br><br>
+
+11.  When done running the agent, just enter "exit".
 
 <p align="center">
 **[END OF LAB]**
@@ -416,7 +426,7 @@ code agent5.py
 5. Now, replace the single *booking agent* definition with these definitions for the 3 agents (making sure to get the indenting correct):
 
 
-**Directions:** Copy the block of replacement text in gray below and paste over the single agent definition in the code. Reminder - you may need to use keyboard shortcuts to copy and paste. The screenshots are only to show you before and after - they are not what you copy.
+**Directions:** Copy the block of replacement text in gray below and paste over the single agent definition in the code. Reminder - you may need to use keyboard shortcuts to copy and paste. The screenshots AFTER the code in the gray box are only to show you before and after - they are not what you copy.
 
 ```
 # Defines the AI agents
