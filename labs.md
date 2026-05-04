@@ -87,7 +87,7 @@ python agent1.py
 
 <br><br>
 
-10. Let's fix this by merging in an updated version that calls the same open-meteo API to get the coordinates for a location. Type "exit" to quit the running instance. Then use the same diff and merge technique as before to merge in the updates with the command below. Close the tab to save your changes when done.
+10. Let's fix this by merging in an updated version that calls the same open-meteo API to get the coordinates for a location. Type "exit" to quit the running instance. Then use the same diff and merge technique as before to merge in the updates with the command below. Close the tab to save your changes when done. (When you are merging, notice not only the additional tool, but also the changes in the system prompt including the CRITICAL RULES area.)
 
 ```
 code -d ../extra/lab1-code-v2.txt agent1.py
