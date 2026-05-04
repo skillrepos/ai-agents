@@ -35,23 +35,16 @@ from fastmcp.exceptions import ToolError
 from langchain_ollama import ChatOllama
 
 # ╔══════════════════════════════════════════════════════════════════╗
-# ║ 1.  Enhanced system prompt for dynamic tool selection            ║
+# ║ 1.  System prompt template                                       ║
+# ║     The list of tools is injected at runtime from the MCP server ║
+# ║     (via list_tools), so nothing about specific tools is         ║
+# ║     hardcoded in this prompt.                                    ║
 # ╚══════════════════════════════════════════════════════════════════╝
-SYSTEM = textwrap.dedent("""
-You are a weather information agent with access to these tools:
+SYSTEM_TEMPLATE = textwrap.dedent("""
+You are a weather information agent. The following tools are advertised
+by the MCP server you are connected to — use only these:
 
-geocode_location(name: str)
-    Converts a city/location name to coordinates
-    Returns: {"latitude": float, "longitude": float, "name": str}
-
-get_weather(lat: float, lon: float)
-    Gets current weather for coordinates
-    Returns: {"temperature": float, "code": int, "conditions": str}
-    Note: Temperature is in Celsius
-
-convert_c_to_f(c: float)
-    Converts Celsius to Fahrenheit
-    Returns: float
+{TOOLS}
 
 IMPORTANT: When you have enough information to answer the user's question,
 respond with:
@@ -62,24 +55,25 @@ Args: {}
 For each step where you need to call a tool, respond with EXACTLY three lines:
 
 Thought: <your reasoning about what to do next>
-Action: <exact tool name: geocode_location, get_weather, convert_c_to_f, or DONE>
+Action: <one of the tool names listed above, or DONE>
 Args: <valid JSON arguments for the tool>
 
-Examples:
-Thought: I need to find the coordinates for Paris first
-Action: geocode_location
-Args: {"name": "Paris"}
-
-Thought: Now I'll get the weather at those coordinates
-Action: get_weather
-Args: {"lat": 48.8566, "lon": 2.3522}
-
-Thought: I need to convert 20.5 Celsius to Fahrenheit
-Action: convert_c_to_f
-Args: {"c": 20.5}
+Format example (use a real tool name from the list above):
+Thought: <your reasoning>
+Action: <tool_name>
+Args: {"key": "value"}
 
 Do NOT add extra text. Do NOT explain after your three lines.
 """).strip()
+
+
+def describe_tool(tool) -> str:
+    """Render an MCP Tool object as a short signature + description block."""
+    schema = getattr(tool, "inputSchema", None) or {}
+    props = schema.get("properties", {}) if isinstance(schema, dict) else {}
+    sig_args = ", ".join(f"{k}: {v.get('type', 'any')}" for k, v in props.items())
+    desc = (tool.description or "").strip().splitlines()[0] if tool.description else ""
+    return f"{tool.name}({sig_args})\n    {desc}".rstrip()
 
 # Regex patterns for parsing LLM responses
 ACTION_RE = re.compile(r"Action:\s*(\w+)", re.IGNORECASE)
@@ -142,8 +136,19 @@ async def run_dynamic(city: str, max_steps: int = 10) -> None:
     llm = ChatOllama(model="llama3.2", temperature=0.0)
 
     async with Client("http://127.0.0.1:8000/mcp/") as mcp:
+        # Discover the tools dynamically from the MCP server, then inject
+        # them into the system prompt. This is the key MCP idea: the
+        # client/agent does not know what tools exist until the server tells it.
+        tools = await mcp.list_tools()
+        tool_block = "\n\n".join(describe_tool(t) for t in tools)
+        system_prompt = SYSTEM_TEMPLATE.replace("{TOOLS}", tool_block)
+
+        print("\n--- Tools advertised by MCP server ---")
+        print(tool_block)
+        print()
+
         messages = [
-            {"role": "system", "content": SYSTEM},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"What is the current weather in {city}?"},
         ]
 

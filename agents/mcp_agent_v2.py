@@ -25,10 +25,19 @@ from fastmcp import Client
 from fastmcp.exceptions import ToolError
 from langchain_ollama import ChatOllama
 
-SYSTEM = textwrap.dedent("""
-You are a weather information agent with access to these tools:
+# ╔══════════════════════════════════════════════════════════════════╗
+# ║ 1.  System prompt template                                       ║
+# ║     The list of tools is injected at runtime from the MCP server ║
+# ║     (via list_tools), so nothing about specific tools is         ║
+# ║     hardcoded in this prompt.                                    ║
+# ╚══════════════════════════════════════════════════════════════════╝
+SYSTEM_TEMPLATE = textwrap.dedent("""
 
 """).strip()
+
+
+def describe_tool(tool) -> str:
+    """Render an MCP Tool object as a short signature + description block."""
 
 # Regex patterns for parsing LLM responses
 ACTION_RE = re.compile(r"Action:\s*(\w+)", re.IGNORECASE)
@@ -83,8 +92,12 @@ def extract_city(prompt: str) -> Optional[str]:
     llm = ChatOllama(model="llama3.2", temperature=0.0)
 
     async with Client("http://127.0.0.1:8000/mcp/") as mcp:
+        # Discover the tools dynamically from the MCP server, then inject
+        # them into the system prompt. The agent does not know what tools
+        # exist until the server tells it.
+
         messages = [
-            {"role": "system", "content": SYSTEM},
+            {"role": "system", "content": system_prompt},
             {"role": "user", "content": f"What is the current weather in {city}?"},
         ]
 
