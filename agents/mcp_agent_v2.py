@@ -32,7 +32,6 @@ from langchain_ollama import ChatOllama
 # ║     hardcoded in this prompt.                                    ║
 # ╚══════════════════════════════════════════════════════════════════╝
 SYSTEM_TEMPLATE = textwrap.dedent("""
-
 """).strip()
 
 
@@ -104,7 +103,6 @@ def extract_city(prompt: str) -> Optional[str]:
 
         for step in range(1, max_steps + 1):
             print(f"[Step {step}]")
-            
 
             action = action_match.group(1).lower()
 
@@ -167,7 +165,7 @@ def extract_city(prompt: str) -> Optional[str]:
                 context["temperature_c"] = result.get("temperature")
                 context["conditions"] = result.get("conditions")
             elif action == "convert_c_to_f":
-                context["temperature_f"] = float(result)           
+                context["temperature_f"] = float(result)
         # Max steps reached
         print(f"\n⚠️  Reached maximum steps ({max_steps}) without completion")
         print("Partial information gathered:")
