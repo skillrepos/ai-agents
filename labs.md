@@ -1,6 +1,6 @@
 # Understanding AI Agents
 ## Session labs 
-## Revision 4.2 - 05/04/26
+## Revision 4.3 - 05/04/26
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -88,6 +88,10 @@ python agent1.py
 <br><br>
 
 10. Let's fix this by merging in an updated version that calls the same open-meteo API to get the coordinates for a location. Type "exit" to quit the running instance. Then use the same diff and merge technique as before to merge in the updates with the command below. Close the tab to save your changes when done.
+
+```
+code -d ../extra/lab1-code-v2.txt agent1.py
+```
 
 ![Fake place](./images/aa91.png?raw=true "Fake place")
 
