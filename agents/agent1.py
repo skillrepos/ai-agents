@@ -25,14 +25,14 @@ WEATHER_CODES = {
 }
 
 # ── 2. Tools ───────────────────────────────────────────────────────────────
-def get_weather(lat: float, lon: float) -> dict:
+def geocode_location(name: str) -> dict:
 
+def get_weather(lat: float, lon: float) -> dict:
 
     # Retry up to 3 times
     max_retries = 3
     for attempt in range(max_retries):
         try:
-
         except (requests.Timeout, requests.ConnectionError) as e:
             if attempt == max_retries - 1:
                 raise  # Re-raise on final attempt
@@ -41,24 +41,19 @@ def get_weather(lat: float, lon: float) -> dict:
 
 # ── 3. Tool registry ────────────────────────────────────────────────────────
 
-
 # ── 4. LLM client ───────────────────────────────────────────────────────────
-
 
 # ── 5. System prompt ────────────────────────────────────────────────────────
 SYSTEM = textwrap.dedent("""
-
 """).strip()
 
 # ── 6. TAO run helper ───────────────────────────────────────────────────────
 def run(question: str) -> str:
-   
 
     print("\n--- Thought → Action → Observation loop ---\n")
 
     max_iterations = 5  # Safety limit
     for i in range(max_iterations):
- 
 
         # Check if AI is done
         if "Final:" in response:
@@ -70,7 +65,7 @@ def run(question: str) -> str:
         if "Action:" in response and "Args:" in response:
             try:
                 # Extract action and args
- 
+
                 # Get the tool function
 
                 if tool_func is None:
@@ -79,11 +74,9 @@ def run(question: str) -> str:
                     break
 
                 # Parse arguments and call the tool
-
                 print(f"Observation: {observation}\n")
 
                 # Add to conversation history
-
             except json.JSONDecodeError as e:
                 print(f"⚠️  Failed to parse Args as JSON: {e}\n")
                 print(f"Args text was: {args_text}\n")

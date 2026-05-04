@@ -25,6 +25,29 @@ WEATHER_CODES = {
 }
 
 # ── 2. Tools ───────────────────────────────────────────────────────────────
+def geocode_location(name: str) -> dict:
+    """
+    Look up coordinates for a place name via Open-Meteo's geocoding API.
+        On success: {"name": str, "lat": float, "lon": float, "country": str}
+        On failure: {"error": "Location '<name>' not found"}
+    """
+    url = (
+        "https://geocoding-api.open-meteo.com/v1/search"
+        f"?name={name}&count=1&language=en&format=json"
+    )
+    r = requests.get(url, timeout=15)
+    r.raise_for_status()
+    results = r.json().get("results")
+    if not results:
+        return {"error": f"Location '{name}' not found"}
+    top = results[0]
+    return {
+        "name":    top["name"],
+        "lat":     top["latitude"],
+        "lon":     top["longitude"],
+        "country": top.get("country", ""),
+    }
+
 def get_weather(lat: float, lon: float) -> dict:
     """
     Return today's forecast:
@@ -57,7 +80,8 @@ def get_weather(lat: float, lon: float) -> dict:
 
 # ── 3. Tool registry ────────────────────────────────────────────────────────
 TOOLS = {
-    "get_weather": get_weather,
+    "geocode_location": geocode_location,
+    "get_weather":      get_weather,
 }
 
 # ── 4. LLM client ───────────────────────────────────────────────────────────
@@ -65,21 +89,33 @@ llm = ChatOllama(model="llama3.2", temperature=0.0)
 
 # ── 5. System prompt ────────────────────────────────────────────────────────
 SYSTEM = textwrap.dedent("""
-You are a weather agent with one tool:
+You are a weather agent with two tools:
+
+geocode_location(name:str)
+    → {"name": str, "lat": float, "lon": float, "country": str}
+      or {"error": str} when the location does not exist
+    Use this FIRST to convert a place name into coordinates.
+    Do NOT guess coordinates yourself.
 
 get_weather(lat:float, lon:float)
     → {"high": float, "low": float, "conditions": str}
-    Returns today's weather forecast with temperatures in Celsius
+    Returns today's weather forecast with temperatures in Celsius.
+    Only call this AFTER geocode_location returns valid coordinates.
 
 You MUST follow this exact format. Do NOT add extra text or explanations.
 
-To use the tool, output EXACTLY this format:
+To use a tool, output EXACTLY this format:
 Thought: <your reasoning>
-Action: get_weather
-Args: {"lat": <latitude>, "lon": <longitude>}
+Action: <tool_name>
+Args: <json object of arguments>
 
-Example:
-Thought: I need to get weather for London at coordinates 51.5074, -0.1278
+Example (step 1 — geocode):
+Thought: I need coordinates for London before I can get the weather.
+Action: geocode_location
+Args: {"name": "London"}
+
+Example (step 2 — weather, after receiving the geocode observation):
+Thought: I have London's coordinates, now I can fetch the weather.
 Action: get_weather
 Args: {"lat": 51.5074, "lon": -0.1278}
 
@@ -87,16 +123,22 @@ When you have the information needed to answer, output:
 Thought: <your reasoning>
 Final: <complete natural language answer - NO Thought/Action/Args format here>
 
-Example of Final:
-Thought: I now have the weather data for London
+Example of Final (success):
+Thought: I now have the weather data for London.
 Final: Today in London will be Slight rain showers with a high of 12.7°C and a low of 8.6°C.
+
+Example of Final (location not found):
+Thought: geocode_location returned an error, so this is not a real place.
+Final: I can't get weather for 'Atlantis' — it does not appear to be a real location.
 
 CRITICAL RULES:
 1. Follow the format EXACTLY - every response must start with "Thought:"
-2. NEVER make up or hallucinate tool results
+2. NEVER make up or hallucinate tool results or coordinates
 3. After outputting Action/Args, STOP and wait for Observation
 4. Only proceed after you receive the actual Observation
-5. After "Final:" output ONLY plain text - do NOT use Thought/Action/Args format
+5. If geocode_location returns an "error" field, do NOT call get_weather —
+   go straight to a Final that tells the user the location was not found
+6. After "Final:" output ONLY plain text - do NOT use Thought/Action/Args format
 """).strip()
 
 # ── 6. TAO run helper ───────────────────────────────────────────────────────
