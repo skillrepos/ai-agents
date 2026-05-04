@@ -1,6 +1,6 @@
 # Understanding AI Agents
 ## Session labs 
-## Revision 4.1 - 05/04/26
+## Revision 4.2 - 05/04/26
 
 **Follow the startup instructions in the README.md file IF NOT ALREADY DONE!**
 
@@ -14,8 +14,8 @@
 
 **What the agent example does**
 - Uses a local Ollama-served LLM (llama3.2) to decide which tools to call and interpret natural language queries about weather.
-- Calls Open-Meteo's geocoding API to turn a place name into coordinates, then queries Open-Meteo's forecast API for the weather at those coordinates.
-- Detects non-existent locations from the geocoding response and refuses gracefully instead of guessing.
+- Queries Open-Meteo's forecast API for the weather at those coordinates.
+- After second update, calls Open-Meteo's geocoding API to turn a place name into coordinates, detects non-existent locations from the geocoding response and refuses gracefully instead of guessing.
 - Provides a summary forecast using a TAO loop.
 
 **What it demonstrates about the framework**
@@ -43,7 +43,7 @@ code agent1.py
 
 3. If you scroll through this file, you can see it outlines the steps the agent will go through without all the code. When you are done looking at it, close the file by clicking on the "X" in the tab at the top of the file.
 
-![Agent code preview](./images/aa87.png?raw=true "Agent code preview") 
+![Agent code preview](./images/uua3.png?raw=true "Agent code preview") 
 
 <br><br>
 
@@ -57,7 +57,7 @@ code -d ../extra/lab1-code.txt agent1.py
 5. Once you have run the command, you'll have a side-by-side view in your editor of the completed code and the agent1.py file.
   You can merge each section of code into the agent1.py file by hovering over the middle bar and clicking on the arrows pointing right. Go through each section, look at the code, and then click to merge the changes in, one at a time.
 
-![Side-by-side merge](./images/aa88.png?raw=true "Side-by-side merge") 
+![Side-by-side merge](./images/uua4.png?raw=true "Side-by-side merge") 
 
 <br><br>
 
@@ -81,15 +81,21 @@ python agent1.py
 
 <br><br>
 
-9. You can then input another location and run the agent again or exit. Note that the API may be limiting the number of accesses in a short period of time. So you may occasionally see it noting a retry.
+9. Now try putting in a name that isn't a real place - for example *Atlantis* or *Narnia*. The model will likely try to guess coordinates on its own and follow up by fetching weather for `(0, 0)` (a point in the Atlantic Ocean) and return nonsense.
+
+![Fake place](./images/aa90.png?raw=true "Fake place") 
 
 <br><br>
 
-10. Now try putting in a name that isn't a real place — for example *Atlantis* or *Narnia*. Watch the TAO loop: the agent should call `geocode_location` first, see an `error` come back in the observation, skip the `get_weather` call entirely, and produce a `Final:` answer telling you the location couldn't be found. Compare that to what would happen if the agent tried to guess coordinates on its own — it would happily fetch weather for `(0, 0)` (a point in the Atlantic Ocean) and return nonsense.
+10. Let's fix this by merging in an updated version that calls the same open-meteo API to get the coordinates for a location. Type "exit" to quit the running instance. Then use the same diff and merge technique as before to merge in the updates with the command below. Close the tab to save your changes when done.
+
+![Fake place](./images/aa91.png?raw=true "Fake place")
 
 <br><br>
 
-11.  When done running the agent, just enter "exit".
+11.  Now, run the agent again and put in a fake location. This time, the agent should call geocode_location first, see an error come back in the observation, skip the get_weather call entirely, and produce a Final: answer telling you the location couldn't be found. When done running the agent, just enter "exit".
+
+![Fake place rerun](./images/aa89.png?raw=true "Fake place rerun")
 
 <p align="center">
 **[END OF LAB]**
