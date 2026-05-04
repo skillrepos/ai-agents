@@ -193,7 +193,7 @@ python mcp_agent_v2.py
 What is the weather in New York?
 ```
 
-![Agent using MCP client running](./images/uaa10.png?raw=true "Agent using MCP client running") 
+![Agent using MCP client running](./images/aa92.png?raw=true "Agent using MCP client running") 
 
 <br><br>
 
