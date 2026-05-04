@@ -43,7 +43,7 @@ code agent1.py
 
 3. If you scroll through this file, you can see it outlines the steps the agent will go through without all the code. When you are done looking at it, close the file by clicking on the "X" in the tab at the top of the file.
 
-![Agent code preview](./images/uaa3.png?raw=true "Agent code preview") 
+![Agent code preview](./images/aa87.png?raw=true "Agent code preview") 
 
 <br><br>
 
