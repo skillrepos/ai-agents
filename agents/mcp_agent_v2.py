@@ -9,6 +9,12 @@ tools to call and when to stop. This demonstrates:
 Prerequisites: FastMCP weather server must be running on localhost:8000
 """
 
+import warnings
+warnings.filterwarnings(
+    "ignore",
+    message=r".*authlib\.jose module is deprecated.*",
+)
+
 import asyncio
 import json
 import re
