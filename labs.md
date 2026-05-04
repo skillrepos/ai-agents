@@ -13,8 +13,9 @@
 ---
 
 **What the agent example does**
-- Uses a local Ollama-served LLM (llama3.2) to decide to call a tool and interpret natural language queries about weather.
-- Extracts coordinates from the input, queries Open-Meteo for weather data.
+- Uses a local Ollama-served LLM (llama3.2) to decide which tools to call and interpret natural language queries about weather.
+- Calls Open-Meteo's geocoding API to turn a place name into coordinates, then queries Open-Meteo's forecast API for the weather at those coordinates.
+- Detects non-existent locations from the geocoding response and refuses gracefully instead of guessing.
 - Provides a summary forecast using a TAO loop.
 
 **What it demonstrates about the framework**
@@ -84,9 +85,7 @@ python agent1.py
 
 <br><br>
 
-10. Try putting in *Sydney, Australia* and then check the output against the weather forecast on the web. Why do you think it doesn't match? How would you fix it?
-
-Here's a clue: "If latitude/longitude is in the Southern or Western hemisphere, use negative values as appropriate"
+10. Now try putting in a name that isn't a real place — for example *Atlantis* or *Narnia*. Watch the TAO loop: the agent should call `geocode_location` first, see an `error` come back in the observation, skip the `get_weather` call entirely, and produce a `Final:` answer telling you the location couldn't be found. Compare that to what would happen if the agent tried to guess coordinates on its own — it would happily fetch weather for `(0, 0)` (a point in the Atlantic Ocean) and return nonsense.
 
 <br><br>
 
